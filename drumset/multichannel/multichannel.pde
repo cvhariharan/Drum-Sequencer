@@ -7,24 +7,12 @@ import ddf.minim.ugens.*;
 import processing.serial.*;
 import processing.sound.*;
 Serial myPort;
-SoundFile[] file = new SoundFile[10];
-SoundFile file1;
-Minim       minim;
-AudioOutput out;
-Sampler S1;
-Sampler S2;
-Sampler R1;
-Sampler R2;
-Sampler R3;
-Sampler R4;
-Sampler K1;
-Sampler K2;
+Minim minim;
 AudioSample[] drums = new AudioSample[8];
-int r = 200;
-float ra;
+float r = 200;
 String val;
 int flag = 0,j;
-int[][] seq = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0}};
+int[][] seq = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0}};  //Initial beats
 int i=0,fre,m=0;
 String[] ins = new String[2];
 void setup()
@@ -45,8 +33,7 @@ void setup()
 }
 void draw()
 {
- //println(frameRate);
- //myPort.bufferUntil('\n'); 
+
  if(flag==1)
 {
 for(i=0;i<8;i++)
@@ -58,7 +45,7 @@ for(i=0;i<8;i++)
       drums[j].trigger(); 
     }
   }
-  delay(r);
+  delay(50+int(r));
 }
 }
 }
@@ -189,29 +176,7 @@ if (val != null) {
   {
     case "R": int t = int(ins[1]);
     println(t);
-    ra = map(t,0,1024,1,8);
+    r = map(t,0,1024,50,600);
     break;
   }
 }
-
-
-/*void play(String toplay, int what, int pos)  //what = 1 - sequencer and what = 0 - normal
-{
-  if(what == 0)
-  {
-    String f = toplay + ".mp3";
-    if(m==10)
-    m=0;
-     file[m] = new SoundFile(this, f);
-     //file.rate(1.2);
-     file[m].play();
-     m++;
-     //delay(50);
-     return;
-  }
-  else
-  {
-    music[pos] = toplay;
-    return;
-  }
-}*/
