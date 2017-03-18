@@ -24,7 +24,7 @@ int r = 200;
 float ra;
 String val;
 int flag = 0,j;
-int[][] seq = {{1,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
+int[][] seq = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0}};
 int i=0,fre,m=0;
 String[] ins = new String[2];
 void setup()
@@ -55,7 +55,7 @@ for(i=0;i<8;i++)
   {
     if(seq[j][i]==1)
     {
-      drums[j].trigger();
+      drums[j].trigger(); 
     }
   }
   delay(r);
@@ -133,58 +133,58 @@ if (val != null) {
     seq[7][p] = 1;
   }
   }
-  /*else
+  else
   {
-  if(val.equals("L1"))
-  {
-    myPort.clear();
-    println(val);
-    play("K1",0,0);
-  }
-  if(val.equals("L2"))
+  if(ins[0].equals("L1"))
   {
     myPort.clear();
     println(val);
-   play("K2",0,0);
+    drums[0].trigger();
   }
-  if(val.equals("L3"))
+  if(ins[0].equals("L2"))
   {
     myPort.clear();
     println(val);
-    play("R1",0,0);
+    drums[1].trigger();
   }
-  if(val.equals("L4"))
+  if(ins[0].equals("L3"))
   {
     myPort.clear();
     println(val);
-    play("R2",0,0);
+    drums[2].trigger();
   }
-  if(val.equals("L5"))
+  if(ins[0].equals("L4"))
   {
     myPort.clear();
     println(val);
-    play("R3",0,0);
+    drums[3].trigger();
   }
-  if(val.equals("L6"))
+  if(ins[0].equals("L5"))
   {
     myPort.clear();
     println(val);
-    play("R4",0,0);
+    drums[4].trigger();
   }
-  if(val.equals("L7"))
+  if(ins[0].equals("L6"))
   {
     myPort.clear();
     println(val);
-    play("S1",0,0);
+    drums[5].trigger();
   }
-  if(val.equals("L8"))
+  if(ins[0].equals("L7"))
   {
     myPort.clear();
     println(val);
-    play("S2",0,0);
+    drums[6].trigger();
+  }
+  if(ins[0].equals("L8"))
+  {
+    myPort.clear();
+    println(val);
+    drums[7].trigger();
   }
   }
-}*/
+}
   switch(ins[0])
   {
     case "R": int t = int(ins[1]);
@@ -193,7 +193,7 @@ if (val != null) {
     break;
   }
 }
-}
+
 
 /*void play(String toplay, int what, int pos)  //what = 1 - sequencer and what = 0 - normal
 {
