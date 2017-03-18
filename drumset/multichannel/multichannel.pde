@@ -20,17 +20,19 @@ Sampler R4;
 Sampler K1;
 Sampler K2;
 AudioSample[] drums = new AudioSample[8];
-int r = 500;
+int r = 200;
+float ra;
 String val;
 int flag = 0,j;
-int[][] seq = {{1,0,0,1,0,1,0,1},{1,0,1,1,0,0,0,1},{1,0,0,1,0,0,0,0},{1,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0},{1,0,0,0,1,0,0,1},{1,0,0,0,1,0,0,0},{1,0,0,1,0,0,0,1}};
+int[][] seq = {{1,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
 int i=0,fre,m=0;
+String[] ins = new String[2];
 void setup()
 {
   frameRate(300);
-  /*String portName = Serial.list()[0];
+  String portName = Serial.list()[0];
   myPort = new Serial(this, portName, 115200);
-  myPort.bufferUntil('\n');*/ 
+  myPort.bufferUntil('\n');
   minim = new Minim(this);
   drums[0] = minim.loadSample("S1.mp3",512);
   drums[1] = minim.loadSample("S2.mp3",512);
@@ -45,6 +47,8 @@ void draw()
 {
  //println(frameRate);
  //myPort.bufferUntil('\n'); 
+ if(flag==1)
+{
 for(i=0;i<8;i++)
 {
   for(j=0;j<8;j++)
@@ -57,70 +61,79 @@ for(i=0;i<8;i++)
   delay(r);
 }
 }
+}
 
-/*void serialEvent( Serial myPort) {
+void serialEvent( Serial myPort) {
 val = myPort.readStringUntil('\n');
 
 if (val != null) {
   val = trim(val);
+  
   if(val.equals("S1"))
   {
     flag=1;
   }
-  
   ins = split(val,',');
   if(flag==1)
   {
-  if(val.equals("L1"))
+  if(ins[0].equals("L1"))
   {
     myPort.clear();
     println(val);
-    play("K1",1,0);
+    int p = int(ins[1]);
+    seq[0][p] = 1;
   }
-  if(val.equals("L2"))
+  if(ins[0].equals("L2"))
   {
     myPort.clear();
     println(val);
-    play("K2",1,1);
+    int p = int(ins[1]);
+    seq[1][p] = 1;
   }
-  if(val.equals("L3"))
+  if(ins[0].equals("L3"))
   {
     myPort.clear();
     println(val);
-    play("R1",1,2);
+    int p = int(ins[1]);
+    seq[2][p] = 1;
   }
-  if(val.equals("L4"))
+  if(ins[0].equals("L4"))
   {
     myPort.clear();
     println(val);
-    play("R2",1,3);
+    int p = int(ins[1]);
+    seq[3][p] = 1;
   }
-  if(val.equals("L5"))
+  if(ins[0].equals("L5"))
   {
     myPort.clear();
     println(val);
-    play("R3",1,4);
+    int p = int(ins[1]);
+    seq[4][p] = 1;
   }
-  if(val.equals("L6"))
+  if(ins[0].equals("L6"))
   {
     myPort.clear();
     println(val);
-    play("R4",1,5);
+    int p = int(ins[1]);
+    seq[5][p] = 1;
   }
-  if(val.equals("L7"))
+  if(ins[0].equals("L7"))
   {
     myPort.clear();
     println(val);
-    play("S1",1,6);
+    int p = int(ins[1]);
+    seq[6][p] = 1;
   }
-  if(val.equals("L8"))
+  if(ins[0].equals("L8"))
   {
     myPort.clear();
     println(val);
-    play("S2",1,7);
+    int p = int(ins[1]);
+    seq[7][p] = 1;
   }
   }
-  else
+  /*else
   {
   if(val.equals("L1"))
   {
@@ -171,17 +184,18 @@ if (val != null) {
     play("S2",0,0);
   }
   }
-}
+}*/
   switch(ins[0])
   {
     case "R": int t = int(ins[1]);
     println(t);
-    r = map(t,0,1024,1,8);
+    ra = map(t,0,1024,1,8);
     break;
   }
 }
+}
 
-void play(String toplay, int what, int pos)  //what = 1 - sequencer and what = 0 - normal
+/*void play(String toplay, int what, int pos)  //what = 1 - sequencer and what = 0 - normal
 {
   if(what == 0)
   {

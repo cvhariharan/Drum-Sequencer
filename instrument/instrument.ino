@@ -23,9 +23,11 @@ const int swi5 = 7;
 const int swi6 = 6;
 const int swi7 = 5;
 const int swi8 = 4;
+const int count = 2;
 const int sel = 3; //To select mode: ON-sequencer or OFF-normal instrument
 int red;
 int change;
+int beat = 0;
 void setup() {
   // put your setup code here, to run once:
    pinAsInput(swi1);
@@ -60,53 +62,70 @@ Serial.println(red);
 if(digitalState(swi1) == HIGH)
 {
  while(digitalState(swi1) == HIGH);
- Serial.println("L1");
+ Serial.print("L1,");
+ Serial.println(beat);
  Serial.flush();
 }
 
 if(digitalState(swi2) == HIGH)
 {
   while(digitalState(swi2) == HIGH);
- Serial.println("L2");
+ Serial.print("L2,");
+ Serial.println(beat);
  Serial.flush();
 }
 
 if(digitalState(swi3) == HIGH)
 {
  while(digitalState(swi3) == HIGH);
- Serial.println("L3");
+ Serial.print("L3,");
+ Serial.println(beat);
  Serial.flush();
 }
 
 if(digitalState(swi4) == HIGH)
 {
   while(digitalState(swi4) == HIGH);
- Serial.println("L4");
+ Serial.print("L4,");
+ Serial.println(beat);
  Serial.flush();
 }
 if(digitalState(swi5) == HIGH)
 {
   while(digitalState(swi5) == HIGH);
- Serial.println("L5");
+ Serial.print("L5,");
+ Serial.println(beat);
  Serial.flush();
 }
 if(digitalState(swi6) == HIGH)
 {
   while(digitalState(swi6) == HIGH);
- Serial.println("L6");
+ Serial.print("L6,");
+ Serial.println(beat);
  Serial.flush();
 }
 if(digitalState(swi7) == HIGH)
 {
   while(digitalState(swi7) == HIGH);
- Serial.println("L7");
+ Serial.print("L7,");
+ Serial.println(beat);
  Serial.flush();
 }
 if(digitalState(swi8) == HIGH)
 {
  while(digitalState(swi8) == HIGH);
- Serial.println("L8");
+ Serial.print("L8,");
+ Serial.println(beat);
  Serial.flush();
+}
+if(digitalState(count) == HIGH)
+{
+  while(digitalState(count) == HIGH);
+  beat++;
+  if(beat==8)
+  {
+    beat=0;
+  }
 }
 delay(30);
 }
