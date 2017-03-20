@@ -1,3 +1,4 @@
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -12,7 +13,9 @@ AudioSample[] drums = new AudioSample[8];
 float r = 200;
 String val;
 int flag = 0,j;
-int[][] seq = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0}};  //Initial beats
+int rows = 8;
+int cols = 8;
+int[][] seq = new int[rows][cols];//{{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0}};  //Initial beats
 int i=0,fre,m=0;
 String[] ins = new String[2];
 void setup()
@@ -30,15 +33,24 @@ void setup()
   drums[5]  = minim.loadSample("R4.mp3",512);
   drums[6] = minim.loadSample("K1.mp3",512);
   drums[7] = minim.loadSample("K2.mp3",512);
+  for(i=0;i<rows;i++)
+  {
+    for(j=0;j<cols;j++)
+    {
+      seq[i][j] = 0;
+    }
+  }
+  i=0;
+  j=0;
 }
 void draw()
 {
 
  if(flag==1)
 {
-for(i=0;i<8;i++)
+for(i=0;i<cols;i++)
 {
-  for(j=0;j<8;j++)
+  for(j=0;j<rows;j++)
   {
     if(seq[j][i]==1)
     {
