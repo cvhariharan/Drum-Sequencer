@@ -1,3 +1,3 @@
 # Sequencer
 ## Roboyantriki Project 
-The initial versions of the desktop client and arduino codes are uploaded.
+A drum sequencer and an Arduino Synthesizer. 
