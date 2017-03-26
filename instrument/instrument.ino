@@ -39,14 +39,7 @@ void setup() {
       pinAsInput(swi7);
        pinAsInput(swi8);
     Serial.begin(115200);
-  if(digitalRead(sel)==HIGH)
-{
- Serial.println("S1");
-}
-else
-{
-  Serial.println("S0");
-}
+  
 
 red = analogRead(A0); //Rate adjustment
 }
@@ -58,6 +51,14 @@ if(abs(red-change)>80)
 Serial.print("R,");
 Serial.println(red);
 //Serial.println(change);
+}
+if(digitalRead(sel)==HIGH)
+{
+ Serial.println("S1");
+}
+else
+{
+  Serial.println("S0");
 }
 if(digitalState(swi1) == HIGH)
 {

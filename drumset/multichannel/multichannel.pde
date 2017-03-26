@@ -72,6 +72,10 @@ if (val != null) {
   {
     flag=1;
   }
+  if(val.equals("S0"))
+  {
+    flag = 0;
+  }
   ins = split(val,',');
   if(flag==1)
   {
