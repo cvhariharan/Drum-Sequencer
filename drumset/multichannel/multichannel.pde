@@ -75,6 +75,15 @@ if (val != null) {
   if(val.equals("S0"))
   {
     flag = 0;
+    for(i=0;i<rows;i++)
+  {
+    for(j=0;j<cols;j++)
+    {
+      seq[i][j] = 0;
+    }
+  }
+  i=0;
+  j=0;
   }
   ins = split(val,',');
   if(flag==1)
