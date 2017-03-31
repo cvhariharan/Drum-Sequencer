@@ -15,6 +15,7 @@ String val;
 int flag = 0,j;
 int rows = 8;
 int cols = 8;
+int tr=0;
 int[][] seq = new int[rows][cols];//{{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{1,0,0,0,0,0,0,0}};  //Initial beats
 int i=0,fre,m=0;
 String[] ins = new String[2];
@@ -49,7 +50,7 @@ void draw()
  if(flag==1)
 {
 for(i=0;i<cols;i++)
-{
+{  
   for(j=0;j<rows;j++)
   {
     if(seq[j][i]==1)
@@ -57,7 +58,7 @@ for(i=0;i<cols;i++)
       drums[j].trigger(); 
      // delay(50+int(r));
     }
-  }
+}
   delay(50+int(r));
 }
 }
@@ -69,13 +70,15 @@ val = myPort.readStringUntil('\n');
 if (val != null) {
   val = trim(val);
   
-  if(val.equals("S1"))
+ if(val.equals("S1"))
   {
     flag=1;
+    println("s1");
   }
   if(val.equals("S0"))
   {
     flag = 0;
+    println("s2");
     for(i=0;i<rows;i++)
   {
     for(j=0;j<cols;j++)

@@ -28,6 +28,9 @@ const int sel = 3; //To select mode: ON-sequencer or OFF-normal instrument
 int red;
 int change;
 int beat = 0;
+String td= "S1";
+int tp=0;
+unsigned long ti;
 void setup() {
   // put your setup code here, to run once:
    pinAsInput(swi1);
@@ -54,12 +57,11 @@ Serial.println(red);
 }
 if(digitalRead(sel)==HIGH)
 {
- Serial.println("S1");
+  Serial.println("S1");
 }
 else
-{
-  Serial.println("S0");
-}
+Serial.println("S0");
+
 if(digitalState(swi1) == HIGH)
 {
  while(digitalState(swi1) == HIGH);
