@@ -55,6 +55,7 @@ for(i=0;i<cols;i++)
     if(seq[j][i]==1)
     {
       drums[j].trigger(); 
+     // delay(50+int(r));
     }
   }
   delay(50+int(r));
